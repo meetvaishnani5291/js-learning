@@ -25,7 +25,8 @@ function myownwait(seconds) {
 
 console.log(
   myownwait("dd")
-    .then(() => {
+  .then(() => {
+      console.log("hii from then1");
       throw "err1";
       return 1;
     })
@@ -44,5 +45,5 @@ console.log(
   // })
 );
 
-myfun1();
+// myfun1();
 console.log("4");
