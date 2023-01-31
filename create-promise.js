@@ -47,3 +47,18 @@ console.log(
 
 // myfun1();
 console.log("4");
+
+
+let fun1 = function (){
+  return Promise.resolve("promise1 resolved.")
+    
+}
+
+let fun2 = function (){
+  return Promise.reject("promise2 resolved.")
+}
+
+// Promise.all([fun1() , fun2()]);
+fun1().then((res)=>{
+  console.log(res);
+});
