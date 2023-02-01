@@ -1,11 +1,11 @@
-const Person = function (firstName, lastName) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  
-};
+// const Person = function (firstName, lastName) {
+//   this.firstName = firstName;
+//   this.lastName = lastName;
 
-let meet = new Person("meet", "vaishnani");
-let p2 = new Person("fn", "ln");
+// };
+
+// let meet = new Person("meet", "vaishnani");
+// let p2 = new Person("fn", "ln");
 
 // console.log(meet);
 // console.log(p2);
@@ -14,16 +14,15 @@ let p2 = new Person("fn", "ln");
 // console.log(p2);
 // console.log(p2 instanceof Person);
 
-Person.prototype.fullName = function () {
-  console.log(this.firstName + " " + this.lastName);
-};
+// Person.prototype.fullName = function () {
+//   console.log(this.firstName + " " + this.lastName);
+// };
 // meet.fullName();
 // delete meet.firstName;
 // meet.fullName();
 
 // console.log(p2.fullName());
 // // Person.prototype
-
 
 // console.log(Person.prototype===meet.__proto__);
 // console.log(meet.__proto__);
@@ -49,8 +48,74 @@ Person.prototype.fullName = function () {
 // console.log(p2.__proto__);
 // console.log(p2.__proto__.__proto__);
 
-let p3 = new Person ("mm","nn");
-console.log(p3.toString());
-p3.fullName();
-console.log(p3.__proto__);
-console.log(typeof p3);
+// let p3 = new Person ("mm","nn");
+// console.log(p3.toString());
+// p3.fullName();
+// console.log(p3.__proto__);
+// console.log(typeof p3);
+
+const Person = function (firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+};
+
+Person.static1 = function () {
+  console.log("hii from static1 method");
+}
+
+Person.prototype.fullName = function () {
+  console.log(this.firstName + " " + this.lastName);
+};
+
+console.log(Person.prototype);
+console.log(Person);
+
+
+const Student = function (id, firstName , lastName){
+  Person.call(this, firstName, lastName);
+  this.id = id;
+}
+// Student.prototype.__proto__ = Person.prototype;
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.nameWithId = function () {
+  console.log(`${this.id}. Name : ${this.firstName} ${this.lastName}`);
+}
+
+let s1 = new Student(33, "meet", "vaishnani");
+s1.fullName();
+s1.nameWithId();
+
+let meet = new Person("meet", "vaishnani");
+
+console.log(s1.__proto__);
+console.log(s1.__proto__.__proto__);
+console.log(s1.__proto__.__proto__.__proto__);
+
+console.log(meet.__proto__);
+console.log(meet.__proto__.__proto__);
+console.log(meet.__proto__.__proto__.__proto__);
+
+console.log(Person.prototype instanceof Person);
+console.log(Person.prototype instanceof Object);
+console.log(Student.prototype instanceof Person);
+console.log(Student.prototype instanceof Student);
+
+console.log(Person == Person.prototype.constructor);
+
+// console.log(MyFirstClass);
+
+class MyFirstClass {
+
+  constructor (a, b, c){
+    this.a = a;
+    this.b = b;
+    this.c = c;
+  }
+  
+  calc (scs) {
+    console.log("hii")
+  }
+}
+
+console.log(MyFirstClass);
